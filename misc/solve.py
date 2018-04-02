@@ -7,6 +7,10 @@ from pwn import *
 # import angr
 # import claripy
 
+LOCAL  = 1
+REMOTE = 0
+DEBUG  = 0
+
 HOST = ""
 PORT = 1337
 
@@ -28,19 +32,21 @@ gdb_script += ["break *" + hex(x) for x in breakpoints_addr]
 gdb_script += gdb_commands
 gdb_script = '\n'.join(gdb_script)
 
-
-gdb_env = {'LD_PRELOAD': libc_path}
+# gdb_env = {'LD_PRELOAD': libc_path}
 
 context.binary = file_path
 context.log_level = 'info'
 context.terminal = ['konsole', '-e']
 
 elf = ELF(file_path)
-libc = ELF(libc_path)
+# libc = ELF(libc_path)
 
-# proc = process(argv = [file_path] + program_args)
-# proc = remote(HOST, PORT)
-# proc = gdb.debug(args = [file_path] + program_args, gdbscript = gdb_script)
+if LOCAL:
+    proc = process(argv = [file_path] + program_args)
+elif REMOTE:
+    proc = remote(HOST, PORT)
+elif DEBUG:
+    proc = gdb.debug(args = [file_path] + program_args, gdbscript = gdb_script)
 
 # proc.interactive()
 
