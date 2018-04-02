@@ -36,7 +36,7 @@ gdb_script = '\n'.join(gdb_script)
 
 context.binary = file_path
 context.log_level = 'info'
-context.terminal = ['konsole', '-e']
+context.terminal = ['tmux', 'split', '-h']
 
 elf = ELF(file_path)
 # libc = ELF(libc_path)
